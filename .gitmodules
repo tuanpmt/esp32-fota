@@ -1,0 +1,3 @@
+[submodule "components/esp-request"]
+	path = components/esp-request
+	url = https://github.com/tuanpmt/esp-request.git
