@@ -22,6 +22,8 @@
 #define WIFI_PASS       CONFIG_WIFI_PASSWORD
 #define APIKEY          CONFIG_APIKEY
 #define SERVER_ENDPOINT "http://fota.vn/api/fota/%s"
+//or https
+//#define SERVER_ENDPOINT "https://fota.vn/api/fota/%s"
 
 static const char *TAG = "FOTA";
 uint8_t sta_mac[6];
