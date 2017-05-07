@@ -92,7 +92,7 @@ static void wait_for_wifi(void)
 
 int download_callback(request_t *req, char *data, int len)
 {
-    list_t *found = req->response->header;
+    req_list_t *found = req->response->header;
     static int binary_len = -1, remain_len = -1;
     static esp_ota_handle_t update_handle = 0;
     static const esp_partition_t *update_partition = NULL;
@@ -101,7 +101,7 @@ int download_callback(request_t *req, char *data, int len)
     if(req->response->status_code == 200) {
         //first time
         if(binary_len == -1) {
-            found = list_get_key(req->response->header, "Content-Length");
+            found = req_list_get_key(req->response->header, "Content-Length");
             if(found) {
                 ESP_LOGI(TAG, "Binary len=%s", (char*)found->value);
                 binary_len = atoi(found->value);
@@ -179,7 +179,7 @@ static void ota_task(void *pvParameter)
     req_perform(req);
     req_clean(req); 
 
-    ESP_LOGE(TAG, "Goes here without reset? error was happen or now new firmware");
+    ESP_LOGE(TAG, "Goes here without reset? error was happen or no new firmware");
     vTaskDelete(NULL);
 }
 
